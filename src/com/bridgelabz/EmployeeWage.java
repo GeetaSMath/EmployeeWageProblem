@@ -1,4 +1,8 @@
+
+
 import java.util.Random;
+
+
 public class EmployeeWage{
 
     public static void main(String[] args) {
@@ -7,28 +11,32 @@ public class EmployeeWage{
         int Day_HRs = 8;
         int Part_HRs = 8;
         int NumDays = 20;
-        double daywage = 0;
-        double monthwage = 0;
+        int MaxHRsMonth = 100;
 
+        int totalEmpHrs = 0;
+        int empHrs = 0;
+        int totalWorkingDays = 0;
+        double monthwage = 0;
         Random random = new Random();
 
-        for (int i =0; i<NumDays; i++){
+        while (totalEmpHrs != MaxHRsMonth && totalWorkingDays != NumDays){
+            totalWorkingDays++;
             int r = random.nextInt(3);
             switch (r){
                 case 1:
-                    daywage = Wage_HR * Day_HRs * i;
+                    empHrs = Day_HRs;
                     break;
                 case 2:
-                    daywage = Wage_HR * (Day_HRs + Part_HRs) * i;
+                    empHrs = Part_HRs;
                     break;
                 case 0:
+                    empHrs = 0;
                     break;
-
             }
-            monthwage = monthwage + daywage;
+            totalEmpHrs = totalWorkingDays + empHrs;
         }
+        monthwage = totalEmpHrs * Wage_HR;
         System.out.println("Month Wage : " + monthwage);
-
 
     }
 }
